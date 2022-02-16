@@ -1,3 +1,5 @@
+import { compileTemplate } from "vue/compiler-sfc";
+
 const state = {
   todos: {
     'ID1': {
@@ -21,12 +23,13 @@ const state = {
   }
 }
 const mutations = {
-
+  updateTodo(state, payload){
+    Object.assign(state.todos[payload.id], payload.updates)
+  }
 }
 const actions = {
   updateTodo({}, payload){
-    console.log('update todo');
-    console.log(payload);
+    compileTemplate('updateTodo', payload)
   }
 }
 const getters = {
@@ -36,7 +39,7 @@ const getters = {
 }
 
 export default {
-  namespace: true,
+  namespaced: true,
   state,
   mutations,
   actions,

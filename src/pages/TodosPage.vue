@@ -7,18 +7,16 @@
 </template>
 
 <script>
-import { computed, defineComponent } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "TodosPage",
   components: {
     todos: require("components/todos/Todos.vue").default
   },
-  setup() {
-    const store = useStore();
-    const todos = computed(() => store.getters.todos);
-    return { todos };
+  computed: {
+    ...mapGetters("todos", ["todos"])
   }
 });
 </script>

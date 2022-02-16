@@ -1,12 +1,12 @@
 <template>
   <q-item
     v-ripple
-    @click="updateTodo"
+    @click="updateTodo({ id: id, updates: { completed: !todo.completed } })"
     clickable
     :class="!todo.completed ? 'bg-blue-1' : 'bg-green-2'"
   >
     <q-item-section side top>
-      <q-checkbox v-model="todo.completed" />
+      <q-checkbox :checked="todo.completed" />
     </q-item-section>
     <q-item-section>
       <q-item-label :class="{ 'text-strikeThrough': todo.completed }"
